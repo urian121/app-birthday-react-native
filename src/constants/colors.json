@@ -1,0 +1,16 @@
+{
+  "canvas": "#152229",
+  "surface": "#1E2C36",
+  "tabBar": "#121C24",
+  "field": "#969696",
+  "fieldDark": "#2A3842",
+  "fieldPlaceholder": "#B0B8BE",
+  "text": "#FFFFFF",
+  "textMuted": "#A0AAB2",
+  "textSoft": "#6F7A82",
+  "textOnAccent": "#152126",
+  "button": "#2A4550",
+  "accent": "#B8F45D",
+  "accentSoft": "#2A3A28",
+  "today": "#B8F45D"
+}

@@ -1,10 +1,6 @@
 import { Text, View } from 'react-native';
-import type { MonthGroup } from '../../types/birthday';
+import type { MonthCardProps } from '../../types/birthday';
 import { formatMonthCount } from '../../utils/birthdayFormat';
-
-type MonthCardProps = {
-  group: MonthGroup;
-};
 
 export function MonthCard({ group }: MonthCardProps) {
   return (

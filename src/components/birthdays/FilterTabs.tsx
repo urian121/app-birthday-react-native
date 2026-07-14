@@ -1,10 +1,5 @@
 import { Pressable, Text, View } from 'react-native';
-
-type FilterPillProps = {
-  label: string;
-  active?: boolean;
-  onPress?: () => void;
-};
+import type { FilterPillProps, FilterTabsProps } from '../../types/birthday';
 
 export function FilterPill({ label, active = false, onPress }: FilterPillProps) {
   return (
@@ -24,11 +19,6 @@ export function FilterPill({ label, active = false, onPress }: FilterPillProps) 
     </Pressable>
   );
 }
-
-type FilterTabsProps = {
-  value: 'upcoming' | 'all';
-  onChange: (value: 'upcoming' | 'all') => void;
-};
 
 export function FilterTabs({ value, onChange }: FilterTabsProps) {
   return (

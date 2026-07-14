@@ -1,13 +1,7 @@
 import { Pressable, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import type { Birthday } from '../../types/birthday';
+import type { BirthdayCardProps } from '../../types/birthday';
 import { colors } from '../../constants/colors';
-
-type BirthdayCardProps = {
-  birthday: Birthday;
-  onEdit?: () => void;
-  onDelete?: () => void;
-};
 
 function formatBirthDate(isoDate: string) {
   const date = new Date(`${isoDate}T12:00:00`);

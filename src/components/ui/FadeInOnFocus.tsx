@@ -1,16 +1,11 @@
-import { ReactNode, useCallback } from 'react';
+import { useCallback } from 'react';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import { useFocusEffect } from '@react-navigation/native';
-
-type FadeInOnFocusProps = {
-  children: ReactNode;
-  className?: string;
-  duration?: number;
-};
+import type { FadeInOnFocusProps } from '../../types/birthday';
 
 export function FadeInOnFocus({
   children,

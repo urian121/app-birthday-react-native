@@ -1,16 +1,11 @@
 import { Image, Pressable, Text, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import type { Birthday } from '../../types/birthday';
+import type { BirthdayListCardProps } from '../../types/birthday';
 import { colors } from '../../constants/colors';
 import {
   formatBirthdayWeekday,
   formatDaysLabel,
 } from '../../utils/birthdayFormat';
-
-type BirthdayListCardProps = {
-  birthday: Birthday;
-  onPress?: () => void;
-};
 
 export function BirthdayListCard({ birthday, onPress }: BirthdayListCardProps) {
   const daysLabel = formatDaysLabel(birthday.daysUntil, birthday.isToday);

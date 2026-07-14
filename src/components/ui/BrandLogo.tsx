@@ -1,9 +1,6 @@
 import { Image } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-
-type BrandLogoProps = {
-  className?: string;
-};
+import type { BrandLogoProps } from '../../types/birthday';
 
 export function BrandLogo({ className = '' }: BrandLogoProps) {
   return (

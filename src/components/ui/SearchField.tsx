@@ -1,12 +1,7 @@
 import { TextInput, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import type { SearchFieldProps } from '../../types/birthday';
 import { colors } from '../../constants/colors';
-
-type SearchFieldProps = {
-  value?: string;
-  placeholder?: string;
-  onChangeText?: (text: string) => void;
-};
 
 export function SearchField({
   value,

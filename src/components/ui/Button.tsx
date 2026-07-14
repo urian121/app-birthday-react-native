@@ -1,16 +1,7 @@
 import { Pressable, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import type { ButtonProps, ButtonVariant } from '../../types/birthday';
 import { colors } from '../../constants/colors';
-
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'link';
-
-type ButtonProps = {
-  label: string;
-  onPress?: () => void;
-  variant?: ButtonVariant;
-  icon?: keyof typeof Ionicons.glyphMap;
-  className?: string;
-};
 
 const variantStyles: Record<
   ButtonVariant,

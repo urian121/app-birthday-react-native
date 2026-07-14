@@ -1,17 +1,6 @@
 import { Text, TextInput, View } from 'react-native';
+import type { TextFieldProps } from '../../types/birthday';
 import { colors } from '../../constants/colors';
-
-type TextFieldProps = {
-  label?: string;
-  placeholder?: string;
-  value?: string;
-  secureTextEntry?: boolean;
-  keyboardType?: 'default' | 'email-address' | 'numeric';
-  onChangeText?: (text: string) => void;
-  className?: string;
-  /** Estilo de auth: pill, sin label, placeholder centrado */
-  variant?: 'default' | 'auth';
-};
 
 export function TextField({
   label,

@@ -1,11 +1,5 @@
-import { ReactNode } from 'react';
 import { Text, View } from 'react-native';
-
-type BirthdaySectionProps = {
-  title: string;
-  subtitle?: string;
-  children: ReactNode;
-};
+import type { BirthdaySectionProps } from '../../types/birthday';
 
 export function BirthdaySection({ title, subtitle, children }: BirthdaySectionProps) {
   return (

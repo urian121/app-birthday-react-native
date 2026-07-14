@@ -1,10 +1,6 @@
 import { Image, Pressable, View } from 'react-native';
+import type { UserAvatarProps } from '../../types/birthday';
 import { MOCK_USER } from '../../constants/mockBirthdays';
-
-type UserAvatarProps = {
-  size?: number;
-  onPress?: () => void;
-};
 
 export function UserAvatar({ size = 40, onPress }: UserAvatarProps) {
   return (

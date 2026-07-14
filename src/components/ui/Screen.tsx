@@ -1,14 +1,7 @@
-import { ReactNode } from 'react';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import type { ScreenProps } from '../../types/birthday';
 import { colors } from '../../constants/colors';
-
-type ScreenProps = {
-  children: ReactNode;
-  scroll?: boolean;
-  padded?: boolean;
-  className?: string;
-};
 
 export function Screen({
   children,

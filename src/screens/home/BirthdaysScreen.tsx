@@ -10,6 +10,7 @@ import { FadeInOnFocus } from '../../components/ui/FadeInOnFocus';
 import { FilterTabs } from '../../components/birthdays/FilterTabs';
 import { BirthdayListCard } from '../../components/birthdays/BirthdayListCard';
 import { MOCK_BIRTHDAYS } from '../../constants/mockBirthdays';
+import type { BirthdayFilter } from '../../types/birthday';
 import type { MainTabParamList, RootStackParamList } from '../../navigation/types';
 
 type Props = CompositeScreenProps<
@@ -18,7 +19,7 @@ type Props = CompositeScreenProps<
 >;
 
 export function BirthdaysScreen({ navigation }: Props) {
-  const [filter, setFilter] = useState<'upcoming' | 'all'>('upcoming');
+  const [filter, setFilter] = useState<BirthdayFilter>('upcoming');
   const [query, setQuery] = useState('');
 
   const filtered = MOCK_BIRTHDAYS.filter((item) => {
