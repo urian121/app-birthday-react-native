@@ -2,245 +2,66 @@
 
 ## Proyecto
 
-Desarrollar una aplicación móvil de cumpleaños con React Native enfocada en una experiencia moderna, minimalista y elegante.
+App móvil de cumpleaños (Expo + React Native + TypeScript + NativeWind).
 
-El objetivo es que los usuarios puedan registrarse, iniciar sesión y administrar una lista de personas para conocer cuándo será su próximo cumpleaños y cuántos días faltan.
+**UI lista.** No rediseñar pantallas. Siguiente: lógica (Firebase auth + CRUD).
 
----
-
-# Stack tecnológico
-
-- React Native
-- Expo
-- TypeScript
-- NativeWind
-- React Native Reanimated
-- react-native-safe-area-context
+Docs Expo: https://docs.expo.dev/versions/v57.0.0/
 
 ---
 
+## Stack
 
-# Objetivo principal
-
-La aplicación permitirá:
-
-- Registro de usuarios con firebase.
-- Inicio de sesión con firebase.
-- Acceso únicamente para usuarios autenticados con firebase.
-- Crear personas con:
-  - nombre
-  - fecha de nacimiento
-  - fotografía (opcional)
-- Editar personas.
-- Eliminar personas.
-- Mostrar cuántos días faltan para cada cumpleaños.
-- Detectar automáticamente quién cumple años hoy.
-- Ordenar los próximos cumpleaños del año en curso.
-- Cuando un cumpleaños ya haya pasado, calcular automáticamente el del siguiente año.
+- Expo 57 / React Native / TypeScript
+- NativeWind + Tailwind
+- Reanimated / Safe Area / React Navigation
 
 ---
 
-## Usuario no autenticado
+## Idioma
 
-- Login
-- Registro
-
-## Usuario autenticado
-
-- Home (Listado de cumpleaños)
-- Crear cumpleaños
-- Editar cumpleaños
-- Perfil (opcional)
+UI siempre en **español**.
 
 ---
 
-# Pantalla Home
+## Pantallas (no cambiar layout)
 
-El listado debe dividirse en dos secciones.
+**Auth:** Login, Registro  
 
-## 🎂 Cumplen años hoy
+**App (tabs):** Cumpleaños | + Agregar | Meses (sin Settings)  
 
-Mostrar primero todas las personas cuyo cumpleaños sea el día actual.
+**Modales/stack:** Crear, Editar  
 
-## Próximos cumpleaños
-
-Mostrar el resto ordenado por proximidad.
-
-Cada tarjeta debe mostrar:
-
-- Foto
-- Nombre
-- Fecha de nacimiento
-- Edad que cumplirá
-- Días restantes
-
-Ejemplo
-
-Hoy cumple años
-
-María
-🎉 Cumple hoy
-
-Próximos
-
-Juan
-Faltan 3 días
-
-Pedro
-Faltan 12 días
+Avatar del usuario arriba a la derecha.
 
 ---
 
-# Reglas para calcular cumpleaños
+## Lógica pendiente
 
-Siempre trabajar con el año actual.
-
-Si el cumpleaños ya pasó:
-
-- calcular el cumpleaños del siguiente año.
-
-Nunca mostrar días negativos.
+- Auth Firebase (registro, login, rutas solo autenticadas)
+- CRUD personas: nombre, fecha nacimiento, foto opcional
+- Días restantes, detectar “hoy”, orden por proximidad
+- Si la fecha ya pasó → próximo año; nunca días negativos
 
 ---
 
-# Diseño UI
+## Colores
 
-La aplicación debe sentirse premium.
+Fuente única: `src/constants/colors.json` (+ `colors.ts`).
 
-Características:
-
-- Minimalista
-- Elegante
-- Mucho espacio en blanco
-- Componentes limpios
-- Diseño moderno
-- Sin exceso de elementos
-
-Evitar:
-
-- colores saturados
-- colores fuertes
-- gradientes agresivos
-- interfaces recargadas
-- bordes gruesos
-- sombras exageradas
+- Fondo: `#152229`
+- Inputs: `fieldDark`
+- Botones: `button`
+- Acento: lima (`accent`)
+- Sin rosa
 
 ---
 
-# Estilo de componentes
+## Código
 
-Preferir:
-
-- border-radius grande
-- sombras muy suaves
-- tarjetas limpias
-- iconografía sencilla
-- tipografía con buena jerarquía
-
-No utilizar:
-
-- bordes visibles si no son necesarios
-- colores intensos
-- botones pesados
-
----
-
-# Paleta
-
-Utilizar colores suaves.
-
-Ejemplo:
-
-Background
-
-- blanco
-- gris muy claro
-
-Texto
-
-- negro
-- gris oscuro
-
-Acentos
-
-- azul suave
-- verde suave
-- morado pastel
-- rosa pastel
-
-Nunca utilizar colores demasiado llamativos.
-
----
-
-# Animaciones
-
-Todas las animaciones deben realizarse con:
-
-react-native-reanimated
-
-Priorizar:
-
-- Fade
-- Slide
-- Scale
-- Layout Animations
-
-Animaciones rápidas y naturales.
-
----
-
-# Safe Area
-
-Toda pantalla debe utilizar:
-
-react-native-safe-area-context
-
-Nunca ignorar el Safe Area.
-
----
-
-# Código
-
-Siempre seguir:
-
-- Componentes pequeños.
-- Código reutilizable.
-- Evitar duplicación.
-- TypeScript estricto.
-- Nombres descriptivos.
-- Separación de responsabilidades.
-
----
-
-# Arquitectura
-
-Organizar el proyecto por funcionalidades.
-
-Ejemplo
-
-src/
-
-- components/
-- screens/
-- navigation/
-- hooks/
-- services/
-- utils/
-- types/
-- constants/
-- assets/
-
----
-
-# UX
-
-La aplicación debe transmitir:
-
-- tranquilidad
-- organización
-- simplicidad
-- elegancia
-
-Cada interacción debe sentirse fluida y rápida.
-
----
+- Types en `src/types/birthday.ts`
+- Estructura: `src/components`, `screens`, `navigation`, `hooks`, `services`, `utils`, `types`, `constants`
+- Componentes pequeños, TypeScript estricto
+- Animaciones con Reanimated (sutiles)
+- Siempre Safe Area
+- Iconos: `@react-native-vector-icons` (ionicons, material-design-icons)

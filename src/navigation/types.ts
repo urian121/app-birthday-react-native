@@ -2,7 +2,6 @@ export type RootStackParamList = {
   Login: undefined;
   Register: undefined;
   Main: undefined;
-  CreateBirthday: undefined;
   EditBirthday: { id: string; name?: string };
 };
 

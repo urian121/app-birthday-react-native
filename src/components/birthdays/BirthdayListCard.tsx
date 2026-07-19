@@ -1,5 +1,5 @@
 import { Image, Pressable, Text, View } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import MaterialCommunityIcons from '@react-native-vector-icons/material-design-icons';
 import type { BirthdayListCardProps } from '../../types/birthday';
 import { colors } from '../../constants/colors';
 import {

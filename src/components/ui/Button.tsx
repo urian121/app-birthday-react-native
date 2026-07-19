@@ -1,5 +1,5 @@
 import { Pressable, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@react-native-vector-icons/ionicons';
 import type { ButtonProps, ButtonVariant } from '../../types/birthday';
 import { colors } from '../../constants/colors';
 

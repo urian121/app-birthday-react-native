@@ -1,25 +1,24 @@
 import { Pressable, Text, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { Ionicons } from '@expo/vector-icons';
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import Ionicons from '@react-native-vector-icons/ionicons';
+import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { Screen } from '../../components/ui/Screen';
+import { FadeInOnFocus } from '../../components/ui/FadeInOnFocus';
 import { TextField } from '../../components/ui/TextField';
 import { Button } from '../../components/ui/Button';
 import { colors } from '../../constants/colors';
-import type { RootStackParamList } from '../../navigation/types';
+import type { MainTabParamList } from '../../navigation/types';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'CreateBirthday'>;
+type Props = BottomTabScreenProps<MainTabParamList, 'Add'>;
 
 export function CreateBirthdayScreen({ navigation }: Props) {
+  const goToBirthdays = () => navigation.navigate('Birthdays');
+
   return (
-    <Screen scroll>
-      <View className="py-4">
-        <Animated.View
-          entering={FadeInDown.duration(400)}
-          className="mb-8 flex-row items-center gap-3"
-        >
+    <Screen scroll padded={false}>
+      <FadeInOnFocus className="px-5 py-4 pb-28">
+        <View className="mb-8 flex-row items-center gap-3">
           <Pressable
-            onPress={() => navigation.goBack()}
+            onPress={goToBirthdays}
             className="h-11 w-11 items-center justify-center rounded-full bg-surface active:opacity-70"
           >
             <Ionicons name="arrow-back" size={20} color={colors.text} />
@@ -30,38 +29,38 @@ export function CreateBirthdayScreen({ navigation }: Props) {
               Añade a alguien para no olvidar su día.
             </Text>
           </View>
-        </Animated.View>
+        </View>
 
-        <Animated.View entering={FadeInDown.delay(80).duration(400)} className="mb-6 items-center">
+        <View className="mb-6 items-center">
           <Pressable className="h-28 w-28 items-center justify-center rounded-full bg-accent-soft active:opacity-80">
             <Ionicons name="camera-outline" size={28} color={colors.accent} />
             <Text className="mt-2 text-xs font-medium text-accent">Foto opcional</Text>
           </Pressable>
-        </Animated.View>
+        </View>
 
-        <Animated.View entering={FadeInDown.delay(140).duration(400)} className="gap-4">
+        <View className="gap-4">
           <TextField label="Nombre" placeholder="Nombre completo" />
           <TextField
             label="Fecha de nacimiento"
             placeholder="AAAA-MM-DD"
             keyboardType="numeric"
           />
-        </Animated.View>
+        </View>
 
-        <Animated.View entering={FadeInDown.delay(200).duration(400)} className="mt-10 gap-3">
+        <View className="mt-10 gap-3">
           <Button
             label="Guardar"
             icon="checkmark-outline"
-            onPress={() => navigation.goBack()}
+            onPress={goToBirthdays}
           />
           <Button
             label="Cancelar"
             variant="ghost"
             icon="close-outline"
-            onPress={() => navigation.goBack()}
+            onPress={goToBirthdays}
           />
-        </Animated.View>
-      </View>
+        </View>
+      </FadeInOnFocus>
     </Screen>
   );
 }

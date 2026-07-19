@@ -1,5 +1,5 @@
 import type { ReactNode, ComponentProps } from 'react';
-import type { Ionicons } from '@expo/vector-icons';
+import type Ionicons from '@react-native-vector-icons/ionicons';
 
 export type Birthday = {
   id: string;

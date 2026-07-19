@@ -1,24 +1,41 @@
 import { Pressable, Text, View } from 'react-native';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import Ionicons from '@react-native-vector-icons/ionicons';
+import MaterialCommunityIcons from '@react-native-vector-icons/material-design-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BirthdaysScreen } from '../screens/home/BirthdaysScreen';
 import { MonthsScreen } from '../screens/home/MonthsScreen';
+import { CreateBirthdayScreen } from '../screens/birthdays/CreateBirthdayScreen';
 import { colors } from '../constants/colors';
-import type { MainTabParamList, RootStackParamList } from './types';
+import type { MainTabParamList } from './types';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
-function AddPlaceholder() {
-  return <View className="flex-1 bg-canvas" />;
+function AddTabButton({ onPress, accessibilityState }: BottomTabBarButtonProps) {
+  const focused = accessibilityState?.selected ?? false;
+  const tint = focused ? colors.accent : colors.text;
+
+  return (
+    <Pressable
+      onPress={onPress}
+      className="top-[-10px] items-center justify-center active:opacity-85"
+      accessibilityRole="button"
+      accessibilityState={accessibilityState}
+      accessibilityLabel="Agregar cumpleaños"
+    >
+      <View
+        className="h-14 w-14 items-center justify-center rounded-full border-[1.5px] bg-canvas"
+        style={{ borderColor: tint }}
+      >
+        <Ionicons name="add" size={30} color={tint} />
+      </View>
+    </Pressable>
+  );
 }
 
 export function MainTabs() {
   const insets = useSafeAreaInsets();
-  const rootNavigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
     <Tab.Navigator
@@ -58,22 +75,11 @@ export function MainTabs() {
       />
       <Tab.Screen
         name="Add"
-        component={AddPlaceholder}
+        component={CreateBirthdayScreen}
         options={{
           tabBarLabel: () => null,
           tabBarIcon: () => null,
-          tabBarButton: () => (
-            <Pressable
-              onPress={() => rootNavigation.navigate('CreateBirthday')}
-              className="top-[-10px] items-center justify-center active:opacity-85"
-              accessibilityRole="button"
-              accessibilityLabel="Agregar cumpleaños"
-            >
-              <View className="h-14 w-14 items-center justify-center rounded-full border-[1.5px] border-text bg-canvas">
-                <Ionicons name="add" size={30} color={colors.text} />
-              </View>
-            </Pressable>
-          ),
+          tabBarButton: (props) => <AddTabButton {...props} />,
         }}
       />
       <Tab.Screen

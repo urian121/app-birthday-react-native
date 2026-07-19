@@ -2,7 +2,6 @@ import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LoginScreen } from '../screens/auth/LoginScreen';
 import { RegisterScreen } from '../screens/auth/RegisterScreen';
-import { CreateBirthdayScreen } from '../screens/birthdays/CreateBirthdayScreen';
 import { EditBirthdayScreen } from '../screens/birthdays/EditBirthdayScreen';
 import { MainTabs } from './MainTabs';
 import { colors } from '../constants/colors';
@@ -37,7 +36,6 @@ export function RootNavigator() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Main" component={MainTabs} />
-        <Stack.Screen name="CreateBirthday" component={CreateBirthdayScreen} />
         <Stack.Screen name="EditBirthday" component={EditBirthdayScreen} />
       </Stack.Navigator>
     </NavigationContainer>
