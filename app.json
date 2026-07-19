@@ -20,7 +20,8 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.developerurian.appbirthdayreactnative"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -28,7 +29,23 @@
     "plugins": [
       "@react-native-vector-icons/ionicons",
       "@react-native-vector-icons/material-design-icons",
-      "expo-font"
-    ]
+      "expo-font",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "buildArchs": [
+              "arm64-v8a",
+              "armeabi-v7a"
+            ]
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "cec77209-feb7-445c-b93b-407275a0ef9b"
+      }
+    }
   }
 }
