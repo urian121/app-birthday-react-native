@@ -29,7 +29,7 @@ export function LoginScreen({ navigation }: Props) {
   return (
     <Screen scroll>
       <Animated.View style={animatedStyle} className="min-h-full flex-1 justify-between">
-        <BrandLogo className="mb-4 mt-1" />
+        <BrandLogo className="mb-4 mt-16" />
 
         <View className="flex-1 justify-center gap-8 py-4">
           <Animated.View

@@ -1,10 +1,12 @@
-import { View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
+import Ionicons from '@react-native-vector-icons/ionicons';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Screen } from '../../components/ui/Screen';
 import { TextField } from '../../components/ui/TextField';
 import { Button } from '../../components/ui/Button';
 import { BrandLogo } from '../../components/ui/BrandLogo';
+import { colors } from '../../constants/colors';
 import type { RootStackParamList } from '../../navigation/types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Register'>;
@@ -13,7 +15,18 @@ export function RegisterScreen({ navigation }: Props) {
   return (
     <Screen scroll>
       <View className="min-h-full flex-1 justify-between">
-        <BrandLogo className="mb-4 mt-1" />
+        <View>
+          <Pressable
+            onPress={() => navigation.goBack()}
+            accessibilityRole="button"
+            accessibilityLabel="Volver"
+            className="h-11 w-11 items-center justify-center rounded-full bg-surface active:opacity-70"
+          >
+            <Ionicons name="arrow-back" size={20} color={colors.text} />
+          </Pressable>
+
+          <BrandLogo className="mb-4 mt-16" />
+        </View>
 
         <View className="flex-1 justify-center gap-8 py-4">
           <Animated.View
