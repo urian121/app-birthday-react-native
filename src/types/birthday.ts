@@ -57,7 +57,7 @@ export type BirthdaySectionProps = {
   children: ReactNode;
 };
 
-export type BirthdayFilter = 'upcoming' | 'all';
+export type BirthdayFilter = 'upcoming' | 'all' | 'past';
 
 export type FilterPillProps = {
   label: string;
@@ -101,6 +101,8 @@ export type ScreenProps = {
   scroll?: boolean;
   padded?: boolean;
   className?: string;
+  /** Bordes con safe area. En tabs usa sin `bottom` (la tab bar ya lo cubre). */
+  edges?: Array<'top' | 'right' | 'bottom' | 'left'>;
 };
 
 export type SearchFieldProps = {
@@ -123,4 +125,15 @@ export type TextFieldProps = {
 export type UserAvatarProps = {
   size?: number;
   onPress?: () => void;
+};
+
+export type ConfirmModalProps = {
+  visible: boolean;
+  title: string;
+  message: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  confirmIcon?: ButtonIconName;
+  onConfirm: () => void;
+  onCancel: () => void;
 };

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { CompositeScreenProps } from '@react-navigation/native';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
@@ -12,11 +12,24 @@ import { BirthdayListCard } from '../../components/birthdays/BirthdayListCard';
 import { MOCK_BIRTHDAYS } from '../../constants/mockBirthdays';
 import type { BirthdayFilter } from '../../types/birthday';
 import type { MainTabParamList, RootStackParamList } from '../../navigation/types';
+import { hasBirthdayPassedThisYear } from '../../utils/birthdayFormat';
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<MainTabParamList, 'Birthdays'>,
   NativeStackScreenProps<RootStackParamList>
 >;
+
+function matchesBirthdayFilter(
+  filter: BirthdayFilter,
+  birthDate: string,
+  daysUntil: number,
+) {
+  const passed = hasBirthdayPassedThisYear(birthDate);
+
+  if (filter === 'all') return true;
+  if (filter === 'past') return passed;
+  return !passed && daysUntil <= 60;
+}
 
 export function BirthdaysScreen({ navigation }: Props) {
   const [filter, setFilter] = useState<BirthdayFilter>('upcoming');
@@ -26,25 +39,34 @@ export function BirthdaysScreen({ navigation }: Props) {
     const matchesQuery = item.name
       .toLowerCase()
       .includes(query.trim().toLowerCase());
-    const matchesFilter = filter === 'all' ? true : item.daysUntil <= 60;
+    const matchesFilter = matchesBirthdayFilter(
+      filter,
+      item.birthDate,
+      item.daysUntil,
+    );
     return matchesQuery && matchesFilter;
   });
 
   return (
-    <Screen scroll padded={false}>
-      <FadeInOnFocus className="px-5 pb-28 pt-2">
-        <View className="mb-5 flex-row items-center gap-3">
-          <View className="flex-1">
-            <SearchField value={query} onChangeText={setQuery} />
+    <Screen padded={false} edges={['top', 'left', 'right']}>
+      <FadeInOnFocus className="flex-1 px-5 pt-2">
+        <View className="bg-canvas pb-4">
+          <View className="mb-5 flex-row items-center gap-3">
+            <View className="flex-1">
+              <SearchField value={query} onChangeText={setQuery} />
+            </View>
+            <UserAvatar />
           </View>
-          <UserAvatar />
-        </View>
 
-        <View className="mb-5">
           <FilterTabs value={filter} onChange={setFilter} />
         </View>
 
-        <View className="gap-3">
+        <ScrollView
+          className="flex-1"
+          contentContainerClassName="grow gap-3 pb-3"
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
           {filtered.map((birthday) => (
             <BirthdayListCard
               key={birthday.id}
@@ -57,7 +79,7 @@ export function BirthdaysScreen({ navigation }: Props) {
               }
             />
           ))}
-        </View>
+        </ScrollView>
       </FadeInOnFocus>
     </Screen>
   );

@@ -11,8 +11,8 @@ type Props = BottomTabScreenProps<MainTabParamList, 'Months'>;
 
 export function MonthsScreen(_props: Props) {
   return (
-    <Screen scroll padded={false}>
-      <FadeInOnFocus className="px-5 pb-28 pt-2">
+    <Screen scroll padded={false} edges={['top', 'left', 'right']}>
+      <FadeInOnFocus className="px-5 pb-3 pt-2">
         <View className="mb-5 flex-row items-center justify-end">
           <UserAvatar />
         </View>

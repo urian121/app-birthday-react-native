@@ -8,6 +8,7 @@ export function Screen({
   scroll = false,
   padded = true,
   className = '',
+  edges = ['top', 'left', 'right', 'bottom'],
 }: ScreenProps) {
   const contentClass = `${padded ? 'px-6' : ''} ${className}`.trim();
 
@@ -16,7 +17,7 @@ export function Screen({
       <SafeAreaView
         className="flex-1 bg-canvas"
         style={{ backgroundColor: colors.canvas }}
-        edges={['top', 'left', 'right', 'bottom']}
+        edges={edges}
       >
         {scroll ? (
           <ScrollView

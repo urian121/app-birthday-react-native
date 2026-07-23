@@ -22,7 +22,7 @@ export function FilterPill({ label, active = false, onPress }: FilterPillProps) 
 
 export function FilterTabs({ value, onChange }: FilterTabsProps) {
   return (
-    <View className="flex-row items-center gap-2">
+    <View className="flex-row flex-wrap items-center gap-2">
       <FilterPill
         label="Próximos"
         active={value === 'upcoming'}
@@ -32,6 +32,11 @@ export function FilterTabs({ value, onChange }: FilterTabsProps) {
         label="Todos"
         active={value === 'all'}
         onPress={() => onChange('all')}
+      />
+      <FilterPill
+        label="Pasados"
+        active={value === 'past'}
+        onPress={() => onChange('past')}
       />
     </View>
   );

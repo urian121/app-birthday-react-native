@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import Ionicons from '@react-native-vector-icons/ionicons';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Screen } from '../../components/ui/Screen';
+import { UserAvatar } from '../../components/ui/UserAvatar';
+import { ConfirmModal } from '../../components/ui/ConfirmModal';
 import { TextField } from '../../components/ui/TextField';
 import { Button } from '../../components/ui/Button';
 import { MOCK_BIRTHDAYS } from '../../constants/mockBirthdays';
@@ -12,12 +15,23 @@ import type { RootStackParamList } from '../../navigation/types';
 type Props = NativeStackScreenProps<RootStackParamList, 'EditBirthday'>;
 
 export function EditBirthdayScreen({ navigation, route }: Props) {
+  const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
   const birthday =
     MOCK_BIRTHDAYS.find((item) => item.id === route.params.id) ?? MOCK_BIRTHDAYS[0];
+  const personName = route.params.name ?? birthday.name;
+
+  const handleConfirmDelete = () => {
+    setConfirmDeleteVisible(false);
+    navigation.goBack();
+  };
 
   return (
-    <Screen scroll>
-      <View className="py-4">
+    <Screen scroll padded={false}>
+      <View className="px-5 pb-8 pt-2">
+        <View className="mb-5 flex-row items-center justify-end">
+          <UserAvatar />
+        </View>
+
         <Animated.View
           entering={FadeInDown.duration(400)}
           className="mb-8 flex-row items-center gap-3"
@@ -31,7 +45,7 @@ export function EditBirthdayScreen({ navigation, route }: Props) {
           <View className="flex-1 gap-1">
             <Text className="text-2xl font-semibold text-text">Editar cumpleaños</Text>
             <Text className="text-sm text-text-muted">
-              Actualiza los datos de {route.params.name ?? birthday.name}.
+              Actualiza los datos de {personName}.
             </Text>
           </View>
         </Animated.View>
@@ -75,7 +89,7 @@ export function EditBirthdayScreen({ navigation, route }: Props) {
           <Button
             label="Eliminar persona"
             icon="trash-outline"
-            onPress={() => navigation.goBack()}
+            onPress={() => setConfirmDeleteVisible(true)}
           />
           <Button
             label="Cancelar"
@@ -85,6 +99,16 @@ export function EditBirthdayScreen({ navigation, route }: Props) {
           />
         </Animated.View>
       </View>
+
+      <ConfirmModal
+        visible={confirmDeleteVisible}
+        title="¿Eliminar persona?"
+        message={`Se eliminará a ${personName} de tu lista. Esta acción no se puede deshacer.`}
+        confirmLabel="Eliminar"
+        cancelLabel="Cancelar"
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setConfirmDeleteVisible(false)}
+      />
     </Screen>
   );
 }

@@ -9,6 +9,22 @@ export function formatBirthdayWeekday(isoDate: string) {
   return formatted.replace(/\./g, '').replace(/^./, (char) => char.toUpperCase());
 }
 
+/** True si el cumpleaños de este año ya pasó (hoy no cuenta como pasado). */
+export function hasBirthdayPassedThisYear(
+  birthDate: string,
+  today: Date = new Date(),
+) {
+  const [, month, day] = birthDate.split('-').map(Number);
+  const anniversary = new Date(today.getFullYear(), month - 1, day);
+  const todayStart = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+  );
+
+  return anniversary < todayStart;
+}
+
 export function formatDaysLabel(daysUntil: number, isToday: boolean) {
   if (isToday || daysUntil === 0) {
     return '¡Hoy!';

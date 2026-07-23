@@ -3,6 +3,7 @@ import Ionicons from '@react-native-vector-icons/ionicons';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { Screen } from '../../components/ui/Screen';
 import { FadeInOnFocus } from '../../components/ui/FadeInOnFocus';
+import { UserAvatar } from '../../components/ui/UserAvatar';
 import { TextField } from '../../components/ui/TextField';
 import { Button } from '../../components/ui/Button';
 import { colors } from '../../constants/colors';
@@ -14,8 +15,12 @@ export function CreateBirthdayScreen({ navigation }: Props) {
   const goToBirthdays = () => navigation.navigate('Birthdays');
 
   return (
-    <Screen scroll padded={false}>
-      <FadeInOnFocus className="px-5 py-4 pb-28">
+    <Screen scroll padded={false} edges={['top', 'left', 'right']}>
+      <FadeInOnFocus className="px-5 pb-3 pt-2">
+        <View className="mb-5 flex-row items-center justify-end">
+          <UserAvatar />
+        </View>
+
         <View className="mb-8 flex-row items-center gap-3">
           <Pressable
             onPress={goToBirthdays}
